@@ -233,14 +233,14 @@ function nextDeliveryStep(){
 
         {
             open:"2026-08-22T14:20:00",
-            date:"2026.08.29 22:40",
+            date:"2026.08.29 23:40",
             location:"BHK ONLINE",
             status:"BHK 온라인 접수 완료"
         },
 
         {
             open:"2026-08-22T17:30:00",
-            date:"2026.08.29 23:40",
+            date:"2026.08.29 00:40",
             location:"서울 집화센터",
             status:"운송장 등록 완료"
         },
@@ -260,21 +260,21 @@ function nextDeliveryStep(){
         },
 
         {
-            open:"2026-07-23T08:20:00",
+            open:"2026-08-23T08:20:00",
             date:"2026.09.01 11:20",
             location:"곤지암 HUB",
             status:"상품 하차"
         },
 
         {
-            open:"2026-07-23T10:50:00",
+            open:"2026-08-23T10:50:00",
             date:"2026.09.01 19:30",
             location:"곤지암 HUB",
             status:"상품 분류"
         },
 
         {
-            open:"2026-07-23T12:30:00",
+            open:"2026-08-23T12:30:00",
             date:"2026.09.01 23:10",
             location:"곤지암 HUB",
             status:"📦 물류센터 분류 작업 진행 중"
@@ -288,49 +288,49 @@ function nextDeliveryStep(){
         },
 
         {
-            open:"2026-07-24T04:20:00",
+            open:"2026-08-24T04:20:00",
             date:"2026.09.03 02:50",
             location:"서울 동부 물류센터",
             status:"상품 하차"
         },
 
         {
-            open:"2026-07-24T04:20:00",
+            open:"2026-08-24T04:20:00",
             date:"2026.09.03 18:50",
             location:"서울 동부 물류센터",
             status:"상품 상차"
         },
 
         {
-            open:"2026-09-24T08:10:00",
+            open:"2026-08-24T08:10:00",
             date:"2026.09.03 23:45",
             location:"송파영업소",
             status:"상품 하차"
         },
 
         {
-            open:"2026-09-24T08:10:00",
+            open:"2026-08-24T08:10:00",
             date:"2026.09.04 09:30",
             location:"송파영업소",
             status:"배송 권역 분류"
         },
 
         {
-            open:"2026-09-24T10:30:00",
+            open:"2026-08-24T10:30:00",
             date:"2026.09.04 13:30",
             location:"송파영업소",
             status:"🚚 배송 권역 배정 작업 진행 중"
         },
 
         {
-            open:"2026-09-24T12:30:00",
+            open:"2026-08-24T12:30:00",
             date:"2026.09.04 21:30",
             location:"석촌동 배송권역",
             status:"배송 영업소 출발"
         },
 
          {
-            open:"2026-09-24T12:30:00",
+            open:"2026-08-24T12:30:00",
             date:"2026.09.05 00:30",
             location:"석촌동 배송권역",
             status:"배송 영업소 도착"
@@ -338,21 +338,21 @@ function nextDeliveryStep(){
 
 
         {
-            open:"2026-09-25T08:30:00",
+            open:"2026-08-25T08:30:00",
             date:"2026.09.05 09:30",
             location:"석촌1 배송권역",
             status:"담당 배송원 배정"
         },
 
         {
-            open:"2026-09-25T09:20:00",
+            open:"2026-08-25T09:20:00",
             date:"2026.09.05 11:30",
             location:"석촌1 배송권역",
             status:"배송 출발"
         },
 
         {
-            open:"2026-09-25T10:10:00",
+            open:"2026-08-25T10:10:00",
             date:"2026.09.05 12:10",
             location:"석촌역 인근",
             status:"목적지 인근 이동 중"
@@ -435,7 +435,7 @@ function nextDeliveryStep(){
 
         <p>
             🔒 새로운 배송 정보가 준비되고 있습니다.
-            
+
         </p>
 
         <p>
@@ -444,7 +444,7 @@ function nextDeliveryStep(){
     `;
 
 }
-    if(stage >= 13){
+    if(stage >= 16){
 
         html += `
             <br>
@@ -535,10 +535,22 @@ function refreshLocation(){
     locationMessage.innerHTML =
         "📡 현재 위치를 확인하는 중입니다...";
 
+    const locations = [
+
+        "📍 석촌역 1번 출구 방향으로 이동 중",
+        "📍 잠실역 근처 인근 이동 중",
+        "📍 배송원이 주소를 찾고 있습니다.",
+        "📍 배송 차량이 목적지 인근에 도착했습니다."
+
+    ];
+
     setTimeout(function(){
 
+        let random =
+            Math.floor(Math.random() * locations.length);
+
         locationMessage.innerHTML =
-            "📍 석촌역 1번 출구 방향으로 이동 중";
+            locations[random];
 
     },1500);
 
