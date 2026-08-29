@@ -76,7 +76,10 @@ function checkTracking(){
 
     document.getElementById("searchButton").style.display = "none";
 
-    document.getElementById("notice").style.display = "none";
+    const notice = document.getElementById("notice");
+if (notice) {
+    notice.style.display = "none";
+}
 
 
     result.innerHTML =
@@ -195,8 +198,10 @@ function verifyPhone(){
             "block";
 
 
-        document.getElementById("searchButton").style.display =
-            "block";
+        const notice = document.getElementById("notice");
+if (notice) {
+    notice.style.display = "block";
+}
 
 
         document.getElementById("notice").style.display =
