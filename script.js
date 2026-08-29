@@ -2,15 +2,10 @@ let failCount = 0;
 
 const correctTracking = "BHK20000925";
 
-const correctNumbers = [
-    "01090134684",   // 친구 번호
-    "01090362840"    // 네 번호
+const correctPhones = [
+    "01090134684",
+    "01090362840"
 ];
-
-if (correctNumbers.includes(trackingNumber)) {
-    // 성공
-}
-
 const PAGE_SIZE = 5;
 let deliveryPage = 0;
 
@@ -172,14 +167,14 @@ function verifyPhone(){
 
     // 번호가 틀렸을 경우
 
-    if(phone !== correctPhone){
+  if(!correctPhones.includes(phone)){
 
-        verificationMessage.innerHTML =
-            "❌ 등록된 정보와 일치하지 않습니다.";
+    verificationMessage.innerHTML =
+        "❌ 등록된 정보와 일치하지 않습니다.";
 
-        return;
+    return;
 
-    }
+}
 
 
     // 번호가 맞았을 경우
@@ -243,105 +238,105 @@ function nextDeliveryStep(){
     const deliveries = [
 
         {
-            open:"2026-08-22T14:20:00",
+            open:"2026-08-23T14:20:00",
             date:"2026.08.29 23:40",
             location:"BHK ONLINE",
             status:"BHK 온라인 접수 완료"
         },
 
         {
-            open:"2026-08-22T17:30:00",
-            date:"2026.08.29 00:40",
+            open:"2026-08-30T00:45:00",
+            date:"2026.08.30 00:40",
             location:"서울 집화센터",
             status:"운송장 등록 완료"
         },
 
         {
-            open:"2026-08-22T22:10:00",
+            open:"2026-08-31T15:50:00",
             date:"2026.08.31 15:40",
             location:"서울 HUB",
             status:"상품 입고"
         },
 
         {
-            open:"2026-08-23T01:40:00",
+            open:"2026-08-31T23:25:00",
             date:"2026.08.31 23:20",
             location:"서울 HUB",
             status:"간선상차"
         },
 
         {
-            open:"2026-08-23T08:20:20",
+            open:"2026-09-01T11:20:20",
             date:"2026.09.01 11:20",
             location:"곤지암 HUB",
             status:"상품 하차"
         },
 
         {
-            open:"2026-08-23T10:50:00",
+            open:"2026-09-01T20:00:00",
             date:"2026.09.01 19:30",
             location:"곤지암 HUB",
             status:"상품 분류"
         },
 
         {
-            open:"2026-08-23T12:30:00",
+            open:"2026-09-02T00:30:00",
             date:"2026.09.01 23:10",
             location:"곤지암 HUB",
             status:"📦 물류센터 분류 작업 진행 중"
         },
 
         {
-            open:"2026-07-23T14:20:00",
+            open:"2026-09-02T22:00:00",
             date:"2026.09.02 21:30",
             location:"곤지암 HUB",
             status:"상품 상차"
         },
 
         {
-            open:"2026-08-24T04:20:00",
+            open:"2026-09-03T03:20:00",
             date:"2026.09.03 02:50",
             location:"서울 동부 물류센터",
             status:"상품 하차"
         },
 
         {
-            open:"2026-08-24T04:20:00",
+            open:"2026-09-03T19:20:00",
             date:"2026.09.03 18:50",
             location:"서울 동부 물류센터",
             status:"상품 상차"
         },
 
         {
-            open:"2026-08-24T08:10:00",
+            open:"2026-09-04T00:10:00",
             date:"2026.09.03 23:45",
             location:"송파영업소",
             status:"상품 하차"
         },
 
         {
-            open:"2026-08-24T08:10:00",
+            open:"2026-09-04T10:10:00",
             date:"2026.09.04 09:30",
             location:"송파영업소",
             status:"배송 권역 분류"
         },
 
         {
-            open:"2026-08-24T10:30:00",
+            open:"2026-09-04T15:30:00",
             date:"2026.09.04 13:30",
             location:"송파영업소",
             status:"🚚 배송 권역 배정 작업 진행 중"
         },
 
         {
-            open:"2026-08-24T12:30:00",
+            open:"2026-09-04T22:00:00",
             date:"2026.09.04 21:30",
             location:"석촌동 배송권역",
             status:"배송 영업소 출발"
         },
 
          {
-            open:"2026-08-24T12:30:00",
+            open:"2026-09-05T00:40:00",
             date:"2026.09.05 00:30",
             location:"석촌동 배송권역",
             status:"배송 영업소 도착"
@@ -349,21 +344,21 @@ function nextDeliveryStep(){
 
 
         {
-            open:"2026-08-25T08:30:00",
+            open:"2026-09-05T09:40:00",
             date:"2026.09.05 09:30",
             location:"석촌1 배송권역",
             status:"담당 배송원 배정"
         },
 
         {
-            open:"2026-08-25T09:20:00",
+            open:"2026-09-05T11:35:00",
             date:"2026.09.05 11:30",
             location:"석촌1 배송권역",
             status:"배송 출발"
         },
 
         {
-            open:"2026-08-25T10:10:00",
+            open:"2026-09-05T12:15:00",
             date:"2026.09.05 12:10",
             location:"석촌역 인근",
             status:"목적지 인근 이동 중"
@@ -493,7 +488,7 @@ function showDeliveryDetail(){
 
             <p>
                 <b>📍 현재 위치</b><br>
-                석촌역 인근
+                석촌동 인근
             </p>
 
             <p>
@@ -504,7 +499,8 @@ function showDeliveryDetail(){
 
             <p>
                 <b>📞 배송 문의</b><br>
-                010-1004-0925
+                010-1004-0925<br>
+                010-9036-2840
             </p>
 
             <hr>
