@@ -5,6 +5,9 @@ const correctTracking = "BHK20000925";
 // 가상 본인인증에 사용할 번호
 const correctPhone = "01012345678";
 
+const PAGE_SIZE = 5;
+let deliveryPage = 0;
+
 
 // ==============================
 // 운송장 조회
@@ -210,7 +213,6 @@ function verifyPhone(){
 // ==============================
 // 다음 배송 단계
 // ==============================
-
 function nextDeliveryStep(){
 
     let result = document.getElementById("result");
@@ -227,164 +229,213 @@ function nextDeliveryStep(){
 
 
     // 배송 단계
-const deliveries = [
+    const deliveries = [
 
-    {
-        open:"2026-07-22T14:20:00",
-        date:"2026.09.22 14:20",
-        location:"BHK ONLINE",
-        status:"BHK 온라인 접수 완료"
-    },
+        {
+            open:"2026-08-22T14:20:00",
+            date:"2026.08.29 22:40",
+            location:"BHK ONLINE",
+            status:"BHK 온라인 접수 완료"
+        },
 
-    {
-        open:"2026-07-22T17:30:00",
-        date:"2026.09.22 17:30",
-        location:"서울 집화센터",
-        status:"운송장 등록 완료"
-    },
+        {
+            open:"2026-08-22T17:30:00",
+            date:"2026.08.29 23:40",
+            location:"서울 집화센터",
+            status:"운송장 등록 완료"
+        },
 
-    {
-        open:"2026-07-22T22:10:00",
-        date:"2026.09.22 22:10",
-        location:"서울 HUB",
-        status:"상품 입고"
-    },
+        {
+            open:"2026-08-22T22:10:00",
+            date:"2026.08.31 15:40",
+            location:"서울 HUB",
+            status:"상품 입고"
+        },
 
-    {
-        open:"2026-07-23T01:40:00",
-        date:"2026.09.23 01:40",
-        location:"서울 HUB",
-        status:"간선상차"
-    },
+        {
+            open:"2026-08-23T01:40:00",
+            date:"2026.08.31 23:20",
+            location:"서울 HUB",
+            status:"간선상차"
+        },
 
-    {
-        open:"2026-07-23T08:20:00",
-        date:"2026.09.23 08:20",
-        location:"곤지암 HUB",
-        status:"상품 하차"
-    },
+        {
+            open:"2026-07-23T08:20:00",
+            date:"2026.09.01 11:20",
+            location:"곤지암 HUB",
+            status:"상품 하차"
+        },
 
-    {
-        open:"2026-07-23T10:50:00",
-        date:"2026.09.23 10:50",
-        location:"곤지암 HUB",
-        status:"상품 분류"
-    },
+        {
+            open:"2026-07-23T10:50:00",
+            date:"2026.09.01 19:30",
+            location:"곤지암 HUB",
+            status:"상품 분류"
+        },
 
-    {
-        open:"2026-07-23T12:30:00",
-        date:"2026.09.23 12:30",
-        location:"곤지암 HUB",
-        status:"📦 물류센터 분류 작업 진행 중"
-    },
+        {
+            open:"2026-07-23T12:30:00",
+            date:"2026.09.01 23:10",
+            location:"곤지암 HUB",
+            status:"📦 물류센터 분류 작업 진행 중"
+        },
 
-    {
-        open:"2026-07-23T14:20:00",
-        date:"2026.09.23 14:20",
-        location:"곤지암 HUB",
-        status:"상품 상차"
-    },
+        {
+            open:"2026-07-23T14:20:00",
+            date:"2026.09.02 21:30",
+            location:"곤지암 HUB",
+            status:"상품 상차"
+        },
 
-    {
-        open:"2026-07-24T04:20:00",
-        date:"2026.09.24 04:20",
-        location:"서울 동부 물류센터",
-        status:"상품 도착"
-    },
+        {
+            open:"2026-07-24T04:20:00",
+            date:"2026.09.03 02:50",
+            location:"서울 동부 물류센터",
+            status:"상품 하차"
+        },
 
-    {
-        open:"2026-07-24T08:10:00",
-        date:"2026.09.24 08:10",
-        location:"송파영업소",
-        status:"배송 권역 분류 완료"
-    },
+        {
+            open:"2026-07-24T04:20:00",
+            date:"2026.09.03 18:50",
+            location:"서울 동부 물류센터",
+            status:"상품 상차"
+        },
 
-    {
-        open:"2026-07-24T10:30:00",
-        date:"2026.09.24 10:30",
-        location:"송파영업소",
-        status:"🚚 배송 권역 배정 작업 진행 중"
-    },
+        {
+            open:"2026-09-24T08:10:00",
+            date:"2026.09.03 23:45",
+            location:"송파영업소",
+            status:"상품 하차"
+        },
 
-    {
-        open:"2026-07-24T12:30:00",
-        date:"2026.09.24 12:30",
-        location:"석촌동 배송권역",
-        status:"배송 영업소 도착"
-    },
+        {
+            open:"2026-09-24T08:10:00",
+            date:"2026.09.04 09:30",
+            location:"송파영업소",
+            status:"배송 권역 분류"
+        },
 
-    {
-        open:"2026-07-25T08:30:00",
-        date:"2026.09.25 08:30",
-        location:"석촌1 배송권역",
-        status:"담당 배송원 배정"
-    },
+        {
+            open:"2026-09-24T10:30:00",
+            date:"2026.09.04 13:30",
+            location:"송파영업소",
+            status:"🚚 배송 권역 배정 작업 진행 중"
+        },
 
-    {
-        open:"2026-07-25T09:20:00",
-        date:"2026.09.25 09:20",
-        location:"석촌1 배송권역",
-        status:"배송 출발"
-    },
+        {
+            open:"2026-09-24T12:30:00",
+            date:"2026.09.04 21:30",
+            location:"석촌동 배송권역",
+            status:"배송 영업소 출발"
+        },
 
-    {
-        open:"2026-07-25T10:10:00",
-        date:"2026.09.25 10:10",
-        location:"석촌역 인근",
-        status:"목적지 인근 이동 중"
+         {
+            open:"2026-09-24T12:30:00",
+            date:"2026.09.05 00:30",
+            location:"석촌동 배송권역",
+            status:"배송 영업소 도착"
+        },
+
+
+        {
+            open:"2026-09-25T08:30:00",
+            date:"2026.09.05 09:30",
+            location:"석촌1 배송권역",
+            status:"담당 배송원 배정"
+        },
+
+        {
+            open:"2026-09-25T09:20:00",
+            date:"2026.09.05 11:30",
+            location:"석촌1 배송권역",
+            status:"배송 출발"
+        },
+
+        {
+            open:"2026-09-25T10:10:00",
+            date:"2026.09.05 12:10",
+            location:"석촌역 인근",
+            status:"목적지 인근 이동 중"
+        }
+
+    ];
+
+    // 현재 공개된 배송 단계 계산
+    for(let i = 0; i < deliveries.length; i++){
+
+        if(now >= new Date(deliveries[i].open)){
+            stage++;
+        }
+
     }
 
-];
+    const totalPages = Math.max(1, Math.ceil(stage / PAGE_SIZE));
 
-
-// 현재 공개된 배송 단계 계산
-for(let i = 0; i < deliveries.length; i++){
-
-    if(now >= new Date(deliveries[i].open)){
-        stage++;
+    if(deliveryPage >= totalPages){
+        deliveryPage = totalPages - 1;
     }
 
-}
+    const start = deliveryPage * PAGE_SIZE;
+    const end = Math.min(start + PAGE_SIZE, stage);
 
-let html = `
-    <div class="deliveryResult">
+    let html = `
+        <div class="deliveryResult">
 
-        <h2>🚚 배송 현황</h2>
+            <h2>🚚 배송 현황</h2>
 
-        <p>
-            현재 배송이 정상적으로 진행되고 있습니다.
-        </p>
+            <p>
+                현재 배송이 정상적으로 진행되고 있습니다.
+            </p>
 
-        <hr>
-`;
-
-for(let i = 0; i < stage; i++){
-
-    html += `
-        <div class="deliveryStep">
-
-            <p><b>🟢 ${deliveries[i].date}</b></p>
-
-            <p>📍 ${deliveries[i].location}</p>
-
-            <p>${deliveries[i].status}</p>
-
-        </div>
+            <hr>
     `;
 
-    if(i < stage - 1){
-        html += `<p class="deliveryArrow">↓</p>`;
+    for(let i = start; i < end; i++){
+
+        html += `
+            <div class="deliveryStep">
+
+                <p><b>🟢 ${deliveries[i].date}</b></p>
+
+                <p>📍 ${deliveries[i].location}</p>
+
+                <p>${deliveries[i].status}</p>
+
+            </div>
+        `;
+
+        if(i < end - 1){
+            html += `<p class="deliveryArrow">↓</p>`;
+        }
+
     }
 
-}
+    html += `
+<div class="deliveryPaging">
 
-if(stage < deliveries.length){
+    ${
+        deliveryPage > 0
+        ? `<button onclick="prevDeliveryPage()">◀</button>`
+        : ``
+    }
+
+    ${
+        deliveryPage < totalPages - 1
+        ? `<button onclick="nextDeliveryPage()">▶</button>`
+        : ``
+    }
+
+</div>
+`;
+
+    if(stage < deliveries.length && deliveryPage === totalPages - 1){
 
     html += `
         <hr>
 
         <p>
             🔒 새로운 배송 정보가 준비되고 있습니다.
+            
         </p>
 
         <p>
@@ -393,28 +444,27 @@ if(stage < deliveries.length){
     `;
 
 }
+    if(stage >= 13){
 
-if(stage >= 13){
+        html += `
+            <br>
+
+            <button class="detailButton"
+                    onclick="showDeliveryDetail()">
+                배송 상세보기 →
+            </button>
+        `;
+
+    }
 
     html += `
-        <br>
-
-        <button class="detailButton"
-                onclick="showDeliveryDetail()">
-            배송 상세보기 →
-        </button>
+        </div>
     `;
 
-}
-
-html += `
-    </div>
-`;
-
-result.innerHTML = html;
+    result.innerHTML = html;
 
 } // ← nextDeliveryStep() 끝
-
+   
 function showDeliveryDetail(){
 
     let result = document.getElementById("result");
@@ -552,5 +602,25 @@ function showDeliveryInfo(){
 
         </div>
     `;
+
+}
+
+function prevDeliveryPage(){
+
+    if(deliveryPage > 0){
+
+        deliveryPage--;
+
+        nextDeliveryStep();
+
+    }
+
+}
+
+function nextDeliveryPage(){
+
+    deliveryPage++;
+
+    nextDeliveryStep();
 
 }
