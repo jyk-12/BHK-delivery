@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>📦 BHK delivery</title>
+
+    <meta property="og:title" content="BHK 통운">
+    <meta property="og:description" content="특별한 배송이 도착했습니다. 배송 정보를 조회해보세요.">
+    <meta property="og:image" content="https://jyk-12.github.io/BHK-delivery/images/og-image.png">
+    <meta property="og:url" content="https://jyk-12.github.io/BHK-delivery/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+    <h1>🚚 BHK Logistics</h1>
+
+    <p class="subtitle">
+        소중한 마음까지 안전하게 배송합니다.
+    </p>
+
+    <input id="trackingNumber"
+           type="text"
+           placeholder="운송장 번호를 입력하세요">
+
+    <p id="notice">*운송장 번호는<b>BHK</b>로 시작해야 합니다.</p>
+
+    <br><br>
+
+   <button id="searchButton" onclick="checkTracking()">
+    조회하기
+</button>
+
+<p class="deliveryGuide">
+    ✔ 배송정보는 실제 배송 진행 상황에 따라 순차적으로 업데이트됩니다.
+</p>
+
+<p id="result"></p>
+
+    <hr>
+
+
+        <small>
+            고객센터 2000-0925<br>
+            운영시간: 09:00~18:00
+        </small>
+
+        <br><br>
+
+    </div>
+
+    <footer>
+         BHK DELIVERY SYSTEM v2.6<br>
+         © 2026 BHK Logistics.<br>
+        All Rights Reserved.
+    </footer>
+
+    <!-- BHK 본인 인증창 -->
+
+<div id="verificationModal">
+
+    <div class="verificationBox">
+
+        <h2>🔐 BHK 본인 인증</h2>
+
+        <p>
+            안전한 배송 정보 조회를 위해<br>
+            본인 인증이 필요합니다.
+        </p>
+
+        <hr>
+
+        <p>
+            📱 등록된 휴대폰 번호를 입력해주세요.
+        </p>
+
+        <input
+            id="phoneNumber"
+            type="text"
+            placeholder="010-0000-0000"
+        >
+
+        <br><br>
+
+        <button onclick="verifyPhone()">
+            인증하기
+        </button>
+
+        <p id="verificationMessage"></p>
+
+        <button onclick="closeVerification()">
+            닫기
+        </button>
+
+    </div>
+
+</div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
