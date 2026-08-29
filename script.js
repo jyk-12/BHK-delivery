@@ -245,8 +245,8 @@ function nextDeliveryStep(){
         },
 
         {
-            open:"2026-08-30T00:45:00",
-            date:"2026.08.30 00:40",
+            open:"2026-08-30T00:20:00",
+            date:"2026.08.30 0:25",
             location:"서울 집화센터",
             status:"운송장 등록 완료"
         },
