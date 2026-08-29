@@ -260,7 +260,7 @@ function nextDeliveryStep(){
         },
 
         {
-            open:"2026-08-23T08:20:00",
+            open:"2026-08-23T08:20:20",
             date:"2026.09.01 11:20",
             location:"곤지암 HUB",
             status:"상품 하차"
