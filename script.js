@@ -2,8 +2,14 @@ let failCount = 0;
 
 const correctTracking = "BHK20000925";
 
-// 가상 본인인증에 사용할 번호
-const correctPhone = "01012345678";
+const correctNumbers = [
+    "01090134684",   // 친구 번호
+    "01090362840"    // 네 번호
+];
+
+if (correctNumbers.includes(trackingNumber)) {
+    // 성공
+}
 
 const PAGE_SIZE = 5;
 let deliveryPage = 0;
