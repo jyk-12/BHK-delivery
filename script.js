@@ -252,7 +252,7 @@ function nextDeliveryStep(){
         },
 
         {
-            open:"2026-08-31T15:50:00",
+            open:"2026-08-31T15:55:00",
             date:"2026.08.31 15:40",
             location:"서울 HUB",
             status:"상품 입고"
